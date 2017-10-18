@@ -4,14 +4,15 @@ import com.abril.laVendimia.domain.entities.Cliente;
 import com.abril.laVendimia.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
-
-
+import java.util.List;
 
 @Component
 public class ClienteApplication {
 
+    @Autowired
     ClienteRepository clienteRepository ;
 
     public Cliente guardaElCliente(Cliente cliente) throws Exception {
@@ -35,7 +36,28 @@ public class ClienteApplication {
 
 
     public Cliente obtenerClientePorId(Integer id){
-        Cliente cliente = this.clienteRepository.findById(id);
+        Cliente cliente = this.clienteRepository.findOne(id);
         return cliente;
     }
+
+    public List<Cliente> obtenerClientes(){
+        List<Cliente> clientesList = (List<Cliente>) this.clienteRepository.findAll();
+        return clientesList;
+    }
+
+    public void eliminarCliente(Integer id){
+        this.clienteRepository.delete(id);
+    }
+
+
+    public void eliminarClientes(){
+        this.clienteRepository.deleteAll();
+    }
+
+    public void editarCliente(Cliente cliente){
+    }
+
+    public void editarDatoCliente(Cliente cliente){
+    }
+
 }
