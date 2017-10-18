@@ -7,10 +7,11 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 
+
+
 @Component
 public class ClienteApplication {
 
-    @Autowired
     ClienteRepository clienteRepository ;
 
     public Cliente guardaElCliente(Cliente cliente) throws Exception {
@@ -31,6 +32,7 @@ public class ClienteApplication {
         return   this.clienteRepository.save(cliente);
 
     }
+
 
     public Cliente obtenerClientePorId(Integer id){
         Cliente cliente = this.clienteRepository.findById(id);

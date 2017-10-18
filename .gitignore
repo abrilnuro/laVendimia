@@ -1,6 +1,10 @@
 .gradle
+<<<<<<< HEAD
 /build
 /out
+=======
+/build/
+>>>>>>> 5db4106a66d87a17c24c7338cf9e8b4ffc761ebb
 !gradle/wrapper/gradle-wrapper.jar
 
 ### STS ###
@@ -23,4 +27,8 @@ build/
 nbbuild/
 dist/
 nbdist/
+<<<<<<< HEAD
 .nb-gradle/
+=======
+.nb-gradle/
+>>>>>>> 5db4106a66d87a17c24c7338cf9e8b4ffc761ebb

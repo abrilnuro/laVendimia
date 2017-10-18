@@ -21,4 +21,5 @@ public class ClienteController {
     private Cliente getClienteById(@PathVariable Integer id){
         return clienteApplication.obtenerClientePorId(id);
     }
+
 }
