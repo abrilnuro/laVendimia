@@ -2,36 +2,37 @@ package com.abril.laVendimia.application;
 
 import com.abril.laVendimia.domain.entities.Cliente;
 import com.abril.laVendimia.repository.ClienteRepository;
+import com.concredito.services.Asserts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class ClienteApplication {
 
+    private Asserts asserts;
+
+    @Autowired
+    public ClienteApplication(){
+        this.asserts = new Asserts();
+    }
+
     @Autowired
     ClienteRepository clienteRepository ;
 
     public Cliente guardaElCliente(Cliente cliente) throws Exception {
-        if(cliente== null) {
-            throw new Exception("CLIENTE NO DEBE SER NULL");
-        }
+        this.asserts.isNotNull(cliente, "No se proporcionó ningun cliente");
+        this.asserts.isNotNullOrEmpty(cliente.getNombre(), "nombre");
+        this.asserts.isNotNullOrEmpty(cliente.getApellidoPat(), "apellido paterno");
 
-        if(cliente != null){
-            throw new Exception("EL CLIENTE NO ES NULO");
+        Cliente clienteExiste = this.clienteRepository.findFirstOnesByNombreAndApellidoPatAndApellidoMat(cliente.getNombre(),
+                cliente.getApellidoPat(),
+                cliente.getApellidoMat());
 
-        }
+        this.asserts.isNull(clienteExiste, "El cliente ya existe");
 
-        if(cliente.getApellidoMat() == null){
-            throw new Exception("Hubo un error");
-
-        }
-
-        return   this.clienteRepository.save(cliente);
-
+        return this.clienteRepository.save(cliente);
     }
 
 

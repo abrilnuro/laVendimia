@@ -8,4 +8,8 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 //@RepositoryRestResource(path = "showclientes")
 public interface ClienteRepository extends CrudRepository<Cliente, Integer> {
+
+    Cliente findFirstOnesByNombreAndApellidoPatAndApellidoMat(@Param("nombre") String nombre,
+                                                              @Param("apellidoPat") String apellidoPat,
+                                                              @Param("apellidoMat") String apellidoMat);
 }
